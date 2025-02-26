@@ -8,9 +8,11 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      maxWidth: {
+        custom: "var(--max-width)",
+      },
+      fontFamily: {
+        news: ["Georgia", "serif"],
       },
     },
   },
