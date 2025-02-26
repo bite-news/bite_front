@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <div className="mx-auto max-w-custom bg-white h-screen">
+        <div className="mx-auto max-w-custom bg-white min-h-screen">
           <Header />
           {children}
         </div>
