@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bite News
 
-## Getting Started
+## 프로젝트 소개
 
-First, run the development server:
+### 서비스 이름 : 🗞️ Bite News 🗞️
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Bite News는 클라우드 기반 인공지능이 뉴스를 분석하고 핵심만 추출하여 숏폼 영상으로 제공하는 서비스입니다. 복잡한 뉴스를 기승전결 구조로 재구성하고 AI 이미지 생성과 음성 합성 기술을 활용해 간결하면서도 정보가 풍부한 영상 콘텐츠로 변환합니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br/>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 멤버 소개
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Hwarang-Oh">
+        <!-- <img src="https://avatars.githubusercontent.com/Hwarang-Oh" width="100px;" heightalt="" /><br /> -->
+        <sub>
+          <b>hwarang(오화랑)</b><br />
+          <b>풀스택 (팀장)</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/devjoylee">
+        <!-- <img src="https://avatars.githubusercontent.com/devjoylee" width="100px;" alt="" /><br /> -->
+        <sub>
+          <b>joy(이주영)</b><br />
+          <b>풀스택</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/iOdiO89">
+        <!-- <img src="https://avatars.githubusercontent.com/iOdiO89" width="100px;" alt="" /><br /> -->
+        <sub>
+          <b>amber(정선아)</b><br />
+          <b>풀스택</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Mason-P-ark">
+        <!-- <img src="https://avatars.githubusercontent.com/Mason-P-ark" width="100px;" alt="" /><br /> -->
+        <sub>
+          <b>jett(박준서)</b><br />
+          <b>클라우드</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/KIMSEOKWON00">
+        <!-- <img src="https://avatars.githubusercontent.com/KIMSEOKWON00" width="100px;" alt="" /><br /> -->
+        <sub>
+          <b>evan(김석원)</b><br />
+          <b>클라우드</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/tykong08">
+        <!-- <img src="https://avatars.githubusercontent.com/tykong08" width="100px;" alt="" /><br /> -->
+        <sub>
+          <b>tommy(공태영)</b><br />
+          <b>인공지능</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
-## Learn More
+<br/>
 
-To learn more about Next.js, take a look at the following resources:
+## 기술 스택
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### FullStack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **FRONTEND** : Next.js, TypeScript, React-Query, Tailwind.css
+- **BACKEND** :
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<br/>
