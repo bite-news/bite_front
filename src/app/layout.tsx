@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/layout/Header";
 
 export const metadata: Metadata = {
   title: "Bite News",
@@ -16,7 +15,6 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <div className="mx-auto max-w-custom bg-white min-h-screen">
-          <Header />
           {children}
         </div>
       </body>
