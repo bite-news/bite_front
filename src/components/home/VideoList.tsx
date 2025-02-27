@@ -6,16 +6,17 @@ import { Loading } from "@/components/common";
 import { VideoCard } from "@/components/home";
 
 interface VideoListProps {
-  initialVideos: Video[];
+  videos: Video[];
 }
 
-export default function VideoList({ initialVideos }: VideoListProps) {
-  const { data: videos, isLoading, ref } = useInfiniteScroll(initialVideos);
+export default function VideoList({ videos }: VideoListProps) {
+  const { data: videoData, isLoading, ref } = useInfiniteScroll(videos);
 
+  console.log(videoData);
   return (
     <>
       <div className="grid grid-cols-2 gap-4 gap-y-8">
-        {videos.map((video) => (
+        {videoData.map((video) => (
           <VideoCard key={video.id} video={video} />
         ))}
       </div>

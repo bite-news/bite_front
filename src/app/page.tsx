@@ -9,7 +9,7 @@ export default async function Home() {
     <>
       <Header />
       <main className="w-full h-full p-4">
-        <VideoList initialVideos={initialVideos} />
+        <VideoList videos={initialVideos} />
       </main>
     </>
   );
