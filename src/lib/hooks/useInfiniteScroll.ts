@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useInView } from "react-intersection-observer";
 
-export function useInfiniteScroll(initialData: Video[]) {
+export function useInfiniteScroll<T>(initialData: T[]) {
   const [data, setData] = useState(initialData);
   const [page, setPage] = useState(1);
   const [hasNext, setHasNext] = useState(true);
@@ -19,7 +19,16 @@ export function useInfiniteScroll(initialData: Video[]) {
     console.log("로딩 중...");
 
     try {
-      // const newVideos = await fetch(`/api/videos?page=&limit=`).then(res => res.json());
+      /**
+        const response = await fetch(`/api/videos?page=${page}`);
+        if (!response.ok) throw new Error("데이터 불러오기 실패");
+        const { data: newVideos, hasNextPage, totalPageCount } = await response.json();
+
+        setData((prev) => [...prev, ...newVideos]);
+        setHasNext(hasNextPage);
+        setPage((prev) => prev + 1);
+      */
+
       await new Promise((res) => setTimeout(res, 3000));
       console.log(`데이터 불러오기 완료, 페이지 ${page + 1}`);
 
