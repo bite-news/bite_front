@@ -46,7 +46,7 @@ export default function VideoInfo({ info }: VideoInfoProps) {
           className={`text-white ${isOpened ? "line-clamp-6" : "line-clamp-1"}`}
           onClick={toggleOpen}
         >
-          {info.content}
+          {/* {info.content} */}
         </motion.div>
       </motion.div>
     </div>
