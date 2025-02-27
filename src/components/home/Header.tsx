@@ -7,7 +7,12 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between h-16 bg-white border border-gray-200 px-4">
       <Link href="/" className="flex items-center">
-        <Image src="/assets/logo.png" alt="logo" width={40} height={20} />
+        <Image
+          src="/assets/images/logo.png"
+          alt="logo"
+          width={40}
+          height={20}
+        />
         <span className="text-xl font-bold font-news">Bite News</span>
       </Link>
       <Link href="/search">
