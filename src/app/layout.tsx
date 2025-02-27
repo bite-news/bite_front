@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Providers from "@/components/common/Provider";
 
 export const metadata: Metadata = {
   title: "Bite News",
@@ -14,9 +15,11 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <div className="mx-auto max-w-custom bg-white min-h-svh">
-          {children}
-        </div>
+        <Providers>
+          <div className="mx-auto max-w-custom bg-white min-h-svh">
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );
