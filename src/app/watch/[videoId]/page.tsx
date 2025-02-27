@@ -1,6 +1,4 @@
-import newsData from "@/data/news.json";
 import Header from "@/components/watch/Header";
-import VideoInfo from "@/components/watch/VideoInfo";
 import VideoContent from "@/components/watch/VideoContent";
 import { getArticle } from "@/lib/api/getArticle";
 import {

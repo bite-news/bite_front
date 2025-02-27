@@ -1,4 +1,3 @@
-import newsData from "@/data/news.json";
 interface GetArticleResponse extends Video {
   prev_id: number | null;
   next_id: number | null;
