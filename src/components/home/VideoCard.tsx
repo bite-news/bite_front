@@ -12,7 +12,7 @@ export default function VideoCard({ video }: VideoCardProps) {
 
   return (
     <div className="flex flex-col">
-      <Link href={`/watch/${id}`} className="relative w-full h-40">
+      <Link href={`/watch/${id}`} className="relative w-full aspect-video">
         <Image
           src={thumbnail_url}
           alt={title}

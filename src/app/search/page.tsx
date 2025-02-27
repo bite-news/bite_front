@@ -1,16 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
-import { Header } from "@/components/search";
+import { Header, VideoList } from "@/components/search";
 import { useGetArticlesByKeyword } from "@/lib/hooks/useGetArticlesByKeyword";
-import { VideoList } from "@/components/home";
 import { Loading } from "@/components/common";
 
 export default function SearchPage() {
   // api/search
 
   const [searchQuery, setSearchQuery] = useState("");
-  const { videos, isLoading } = useGetArticlesByKeyword(searchQuery);
+  const { data, isLoading } = useGetArticlesByKeyword(searchQuery);
+
+  const videos = data?.data.articles;
+
+  console.log(videos);
 
   const handleSearch = (query: string) => {
     console.log("검색", searchQuery);
@@ -20,14 +23,19 @@ export default function SearchPage() {
   return (
     <main className="flex flex-col h-screen">
       <Header onSearch={handleSearch} />
-      <div className="flex-1 flex w-full justify-center items-center overflow-y-auto mb-[60px]">
+      <div className="flex-1 w-full overflow-y-auto p-3">
         {isLoading ? (
-          <Loading />
-        ) : videos.length === 0 ? (
-          <p className="text-center">검색 결과가 없습니다.</p>
+          <div className="flex justify-center items-center h-[calc(100%-60px)]">
+            <Loading />
+          </div>
         ) : (
-          <VideoList videos={videos} />
+          (videos?.length === 0 || videos === undefined) && (
+            <div className="flex justify-center items-center h-[calc(100%-60px)]">
+              <p className="text-center">검색 결과가 없습니다.</p>
+            </div>
+          )
         )}
+        {videos && <VideoList videos={videos} />}
       </div>
     </main>
   );

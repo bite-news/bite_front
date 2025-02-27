@@ -12,7 +12,7 @@ function useGetArticlesByKeyword(keyword: string) {
   console.log(keyword, data);
 
   return {
-    videos: data || [],
+    data,
     isLoading,
     error,
   };

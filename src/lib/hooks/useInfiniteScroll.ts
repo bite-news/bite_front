@@ -19,15 +19,17 @@ export function useInfiniteScroll<T>(initialData: T[]) {
     console.log("로딩 중...");
 
     try {
-      /**
-        const response = await fetch(`/api/videos?page=${page}`);
-        if (!response.ok) throw new Error("데이터 불러오기 실패");
-        const { data: newVideos, hasNextPage, totalPageCount } = await response.json();
+      const response = await fetch(`/api/videos?page=${page}`);
+      if (!response.ok) throw new Error("데이터 불러오기 실패");
+      const {
+        data: newVideos,
+        hasNextPage,
+        totalPageCount,
+      } = await response.json();
 
-        setData((prev) => [...prev, ...newVideos]);
-        setHasNext(hasNextPage);
-        setPage((prev) => prev + 1);
-      */
+      setData((prev) => [...prev, ...newVideos]);
+      setHasNext(hasNextPage);
+      setPage((prev) => prev + 1);
 
       await new Promise((res) => setTimeout(res, 3000));
       console.log(`데이터 불러오기 완료, 페이지 ${page + 1}`);

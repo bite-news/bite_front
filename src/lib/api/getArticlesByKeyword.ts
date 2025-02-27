@@ -1,6 +1,4 @@
-export async function getArticlesByKeyword(
-  keyword: string,
-): Promise<Video[] | null> {
+export async function getArticlesByKeyword(keyword: string) {
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     const response = await fetch(`/api/search?keyword=${keyword}`);
