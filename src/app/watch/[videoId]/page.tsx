@@ -18,7 +18,7 @@ export default async function WatchPage({
   const videoUrl = "https://download.ted.com/talks/KateDarling_2018S.mp4";
 
   return (
-    <main className="relative h-dvh bg-black">
+    <main className="relative h-svh bg-black">
       <Header />
       <VideoContent
         url={videoUrl}
