@@ -7,7 +7,7 @@ export default function Custom404() {
       <Header />
       <div className="">
         <Image
-          src={require("@/assets/images/error-icon.png")}
+          src="/assets/images/error-icon.png"
           className="h-[200px] w-[200px]"
           alt="valid video not exits"
         />
