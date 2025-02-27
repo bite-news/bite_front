@@ -3,6 +3,7 @@ interface Video {
   title: string;
   source_url: string;
   thumbnail_url: string;
+  video_url: string;
   source_created_at: string;
 }
 

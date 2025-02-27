@@ -1,12 +1,5 @@
 import newsData from "@/data/news.json";
-
-interface GetArticleResponse {
-  status: string;
-  message: string;
-  data: VideoShort;
-}
-
-interface VideoShort extends Video {
+interface GetArticleResponse extends Video {
   prev_id: number | null;
   next_id: number | null;
 }
@@ -18,9 +11,9 @@ export async function getArticle(
     const response = await fetch(
       `${process.env.SERVER_URL}/api/articles/${articleId}`,
     );
-    const data = await response.json();
+    const result = await response.json();
 
-    return data;
+    return result.data;
   } catch (error) {
     console.error("[ERROR]getArticle:\n", error);
     return null;

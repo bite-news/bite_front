@@ -2,30 +2,32 @@ import newsData from "@/data/news.json";
 import Header from "@/components/watch/Header";
 import VideoInfo from "@/components/watch/VideoInfo";
 import VideoContent from "@/components/watch/VideoContent";
+import { getArticle } from "@/lib/api/getArticle";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 
 export default async function WatchPage({
   params,
 }: Readonly<{ params: Promise<{ videoId: number }> }>) {
+  const queryClient = new QueryClient();
   const videoId = (await params).videoId;
 
-  // 임시
-  const videoInfo =
-    newsData.find((video) => video.id == videoId) ?? newsData[0];
-  const videoIndex = newsData.findIndex((video) => video.id == videoId) ?? 0;
-  const prevVideoId = videoIndex === 0 ? null : newsData[videoIndex - 1].id;
-  const nextVideoId =
-    videoIndex === newsData.length - 1 ? null : newsData[videoIndex + 1].id;
-  const videoUrl = "https://download.ted.com/talks/KateDarling_2018S.mp4";
+  if (isNaN(videoId)) throw new Error();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["getArticle", videoId],
+    queryFn: () => getArticle(videoId),
+  });
 
   return (
     <main className="relative h-svh bg-black">
-      <Header />
-      <VideoContent
-        url={videoUrl}
-        prevVideoId={prevVideoId}
-        nextVideoId={nextVideoId}
-      />
-      <VideoInfo info={videoInfo} />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <Header />
+        <VideoContent videoId={videoId} />
+      </HydrationBoundary>
     </main>
   );
 }

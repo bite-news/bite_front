@@ -1,54 +1,26 @@
-"use client";
-
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { IoIosArrowForward } from "react-icons/io";
+import { GoTriangleRight } from "react-icons/go";
 
 interface VideoInfoProps {
-  info: Video;
+  title?: string;
+  sourceURL?: string;
 }
 
-export default function VideoInfo({ info }: VideoInfoProps) {
-  const [isOpened, setIsOpened] = useState<boolean>(false);
-
-  const toggleOpen = () => {
-    setIsOpened(!isOpened);
-  };
-
-  const onClickOpenContent = () => {
-    if (isOpened) toggleOpen();
-  };
-
+export default function VideoInfo({ title, sourceURL }: VideoInfoProps) {
   return (
-    <div
-      className={`absolute bottom-0 pb-8 px-4 w-full flex items-end ${isOpened ? "bg-black/50 h-svh" : ""}`}
-    >
-      <motion.div
-        layout
-        className={`flex flex-col gap-2`}
-        onClick={onClickOpenContent}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="text-white text-xl font-bold line-clamp-1">
-          {info.title}
-        </div>
-        {isOpened && (
-          <Link
-            href={info.source_url}
-            className="px-2 py-2 text-white border border-1 border-white rounded flex justify-between items-center"
-          >
-            기사 보러 가기
-            <IoIosArrowForward />
-          </Link>
-        )}
-        <motion.div
-          className={`text-white ${isOpened ? "line-clamp-6" : "line-clamp-1"}`}
-          onClick={toggleOpen}
+    <div className="absolute bottom-0 left-0 px-4 pb-8">
+      <div className="text-white font-bold line-clamp-1 text-lg">{title}</div>
+      {sourceURL && (
+        <Link
+          href={sourceURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white flex item-center -ml-2 pt-2"
         >
-          {/* {info.content} */}
-        </motion.div>
-      </motion.div>
+          <GoTriangleRight size={24} />
+          원본 기사 보러 가기
+        </Link>
+      )}
     </div>
   );
 }
