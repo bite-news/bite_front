@@ -19,7 +19,7 @@ export default function VideoContent({
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const touchStartY = useRef<number>(0);
-  const touchEndY = useRef<number>(0);
+  const touchEndY = useRef<number | null>(null);
 
   const toggleVideoPlay = () => {
     const video = videoRef.current;
@@ -31,26 +31,32 @@ export default function VideoContent({
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartY.current = e.touches[0].clientY;
-    console.log({ start: touchStartY.current });
   };
 
   const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchEndY.current = e.touches[0].clientY;
-    console.log({ end: touchStartY.current });
+    const currentY = e.touches[0].clientY;
+    const gap = Math.abs(currentY - touchStartY.current);
+
+    touchEndY.current = currentY;
   };
 
   const onSwipeVideo = () => {
-    const gapY = touchStartY.current - touchEndY.current;
-    console.log({ gapY });
+    const gapY =
+      touchEndY.current === null ? 0 : touchStartY.current - touchEndY.current;
+
     if (Math.abs(gapY) >= CONSTANT.VIDEO_SWIPE_THRESHOLD) {
-      if (gapY > 0) router.replace(`/watch/${nextVideoId}`);
-      else router.replace(`/watch/${prevVideoId}`);
-    }
+      if (gapY > 0) {
+        if (nextVideoId === null) alert("마지막 비디오");
+        else router.replace(`/watch/${nextVideoId}`);
+      } else {
+        if (prevVideoId === null) alert("첫번쨰 비디오");
+        else router.replace(`/watch/${prevVideoId}`);
+      }
+    } else toggleVideoPlay();
   };
 
   return (
     <div
-      onClick={toggleVideoPlay}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onSwipeVideo}
