@@ -1,5 +1,3 @@
-import newsData from "@/data/news.json";
-
 export async function getArticleList(
   pageNumber: number,
 ): Promise<Video[] | null> {

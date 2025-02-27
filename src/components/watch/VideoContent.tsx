@@ -5,19 +5,18 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
 import style from "@/styles/videoContent.module.css";
+import { useGetArticle } from "@/lib/hooks/useGetArticle";
+import VideoInfo from "./VideoInfo";
 
 interface VideoContentProps {
-  nextVideoId: number | null;
-  prevVideoId: number | null;
-  url: string;
+  videoId: number;
 }
 
-export default function VideoContent({
-  url,
-  nextVideoId,
-  prevVideoId,
-}: VideoContentProps) {
+export default function VideoContent({ videoId }: VideoContentProps) {
   const router = useRouter();
+
+  const { data: videoInfo } = useGetArticle(videoId);
+  if (videoInfo === null) throw new Error();
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const touchStartY = useRef<number>(0);
@@ -54,15 +53,17 @@ export default function VideoContent({
     const gapY =
       touchEndY.current === null ? 0 : touchStartY.current - touchEndY.current;
 
-    if (Math.abs(gapY) >= CONSTANT.VIDEO_SWIPE_THRESHOLD) {
-      if (gapY > 0) {
-        if (nextVideoId === null) alert("마지막 비디오");
-        else router.replace(`/watch/${nextVideoId}`);
-      } else {
-        if (prevVideoId === null) alert("첫번쨰 비디오");
-        else router.replace(`/watch/${prevVideoId}`);
-      }
-    } else toggleVideoPlay();
+    if (videoInfo) {
+      if (Math.abs(gapY) >= CONSTANT.VIDEO_SWIPE_THRESHOLD) {
+        if (gapY > 0) {
+          if (videoInfo.next_id === null) alert("마지막 비디오");
+          else router.replace(`/watch/${videoInfo.next_id}`);
+        } else {
+          if (videoInfo.prev_id === null) alert("첫번쨰 비디오");
+          else router.replace(`/watch/${videoInfo.prev_id}`);
+        }
+      } else toggleVideoPlay();
+    }
   };
 
   return (
@@ -73,12 +74,14 @@ export default function VideoContent({
     >
       <video
         ref={videoRef}
-        src={url}
-        className="w-full min-h-screen object-contain"
+        src={videoInfo?.video_url}
+        className="w-full min-h-screen object-contain text-white"
         autoPlay
-        muted
         playsInline
-      />
+        loop
+      >
+        비디오 태그가 지원되지 않는 브라우저입니다.
+      </video>
       {isIconVisible && iconType === "PLAY" && (
         <IoPlayCircleOutline
           className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/80 ${style["animate-fade"]}`}
@@ -91,6 +94,7 @@ export default function VideoContent({
           size={80}
         />
       )}
+      <VideoInfo title={videoInfo?.title} sourceURL={videoInfo?.source_url} />
     </div>
   );
 }
