@@ -6,8 +6,6 @@ import { useGetArticlesByKeyword } from "@/lib/hooks/useGetArticlesByKeyword";
 import { Loading } from "@/components/common";
 
 export default function SearchPage() {
-  // api/search
-
   const [searchQuery, setSearchQuery] = useState("");
   const { data, isLoading } = useGetArticlesByKeyword(searchQuery);
 

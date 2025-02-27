@@ -24,7 +24,7 @@ export function useInfiniteScroll<T>(initialData: T[]) {
       const {
         data: newVideos,
         hasNextPage,
-        totalPageCount,
+        // totalPageCount,
       } = await response.json();
 
       setData((prev) => [...prev, ...newVideos]);
