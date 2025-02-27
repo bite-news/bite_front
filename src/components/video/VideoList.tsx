@@ -2,6 +2,7 @@
 
 import React from "react";
 import VideoCard from "./VideoCard";
+import Loading from "../Loading";
 import { useInfiniteScroll } from "@/lib/hooks/useInfiniteScroll";
 
 interface VideoListProps {
@@ -19,12 +20,8 @@ export default function VideoList({ initialVideos }: VideoListProps) {
         ))}
       </div>
 
-      <div ref={ref} className="w-full py-4 flex justify-center">
-        {isLoading ? (
-          <div className="loader">로딩 중...</div>
-        ) : (
-          <div className="h-10"></div>
-        )}
+      <div ref={ref} className="w-full py-6 flex justify-center">
+        {isLoading ? <Loading /> : <div className="w-full h-1"></div>}
       </div>
     </>
   );
