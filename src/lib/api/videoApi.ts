@@ -1,8 +1,8 @@
 import newsData from "@/data/news.json";
 
-export async function fetchVideos() {
+export async function fetchVideos(): Promise<Video[]> {
   try {
-    // const response = await fetch("api/videos");
+    // const response = await fetch("api/articles");
 
     // if (!response.ok) {
     //   throw new Error("뉴스를 불러오는데 실패했습니다.");
