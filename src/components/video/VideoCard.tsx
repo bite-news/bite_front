@@ -1,4 +1,4 @@
-import { dateConverter } from "@/utils/dateConverter";
+import { dateConverter } from "@/lib/utils/dateConverter";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
