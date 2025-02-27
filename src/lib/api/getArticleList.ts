@@ -1,6 +1,4 @@
-export async function getArticleList(
-  pageNumber: number,
-): Promise<Video[] | null> {
+export async function getArticleList(pageNumber: number) {
   try {
     const response = await fetch(
       `${process.env.SERVER_URL}/api/articles?page=${pageNumber}`,
