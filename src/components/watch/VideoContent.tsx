@@ -2,7 +2,9 @@
 
 import { CONSTANT } from "@/data/constant";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
+import style from "@/styles/videoContent.module.css";
 
 interface VideoContentProps {
   nextVideoId: number | null;
@@ -21,12 +23,23 @@ export default function VideoContent({
   const touchStartY = useRef<number>(0);
   const touchEndY = useRef<number | null>(null);
 
+  const [isIconVisible, setIsIconVisible] = useState<boolean>(false);
+  const [iconType, setIconType] = useState<"PLAY" | "PAUSE">("PAUSE");
+
   const toggleVideoPlay = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (video.paused) video.play();
-    else video.pause();
+    if (video.paused) {
+      setIconType("PLAY");
+      video.play();
+    } else {
+      setIconType("PAUSE");
+      video.pause();
+    }
+
+    setIsIconVisible(true);
+    setTimeout(() => setIsIconVisible(false), 1000);
   };
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -34,10 +47,7 @@ export default function VideoContent({
   };
 
   const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    const currentY = e.touches[0].clientY;
-    const gap = Math.abs(currentY - touchStartY.current);
-
-    touchEndY.current = currentY;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const onSwipeVideo = () => {
@@ -69,6 +79,18 @@ export default function VideoContent({
         muted
         playsInline
       />
+      {isIconVisible && iconType === "PLAY" && (
+        <IoPlayCircleOutline
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/80 ${style["animate-fade"]}`}
+          size={80}
+        />
+      )}
+      {isIconVisible && iconType === "PAUSE" && (
+        <IoPauseCircleOutline
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/80 ${style["animate-fade"]}`}
+          size={80}
+        />
+      )}
     </div>
   );
 }
