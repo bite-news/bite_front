@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import VideoCard from "./VideoCard";
-import Loading from "../Loading";
 import { useInfiniteScroll } from "@/lib/hooks/useInfiniteScroll";
+import { Loading } from "@/components/common";
+import { VideoCard } from "@/components/home";
 
 interface VideoListProps {
   initialVideos: Video[];

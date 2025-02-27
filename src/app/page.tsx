@@ -1,6 +1,5 @@
 import React from "react";
-import Header from "@/components/layout/Header";
-import VideoList from "@/components/video/VideoList";
+import { Header, VideoList } from "@/components/home";
 import { fetchVideos } from "@/lib/api/videoApi";
 
 export default async function Home() {
