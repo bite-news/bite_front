@@ -75,11 +75,13 @@ export default function VideoContent({ videoId }: VideoContentProps) {
       <video
         ref={videoRef}
         src={videoInfo?.video_url}
-        className="w-full min-h-screen object-contain"
+        className="w-full min-h-screen object-contain text-white"
         autoPlay
-        muted
         playsInline
-      />
+        loop
+      >
+        비디오 태그가 지원되지 않는 브라우저입니다.
+      </video>
       {isIconVisible && iconType === "PLAY" && (
         <IoPlayCircleOutline
           className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/80 ${style["animate-fade"]}`}
