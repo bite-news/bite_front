@@ -9,7 +9,7 @@ export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const { data, isLoading } = useGetArticlesByKeyword(searchQuery);
 
-  const videos = data?.data.articles;
+  const videos = data?.data?.articles as Video[];
 
   console.log(videos);
 
