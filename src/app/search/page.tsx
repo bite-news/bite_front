@@ -7,14 +7,9 @@ import { Loading } from "@/components/common";
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const { data, isLoading } = useGetArticlesByKeyword(searchQuery);
-
-  const videos = data?.data?.articles as Video[];
-
-  console.log(videos);
+  const { data: videoList, isLoading } = useGetArticlesByKeyword(searchQuery);
 
   const handleSearch = (query: string) => {
-    console.log("검색", searchQuery);
     setSearchQuery(query);
   };
 
@@ -27,13 +22,13 @@ export default function SearchPage() {
             <Loading />
           </div>
         ) : (
-          (videos?.length === 0 || videos === undefined) && (
+          (videoList?.length === 0 || videoList === undefined) && (
             <div className="flex justify-center items-center h-[calc(100%-60px)]">
               <p className="text-center">검색 결과가 없습니다.</p>
             </div>
           )
         )}
-        {videos && <VideoList videos={videos} />}
+        {videoList && <VideoList videos={videoList} />}
       </div>
     </main>
   );

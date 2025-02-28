@@ -1,12 +1,15 @@
-export async function getArticlesByKeyword(keyword: string) {
-  try {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const response = await fetch(`/api/search?keyword=${keyword}`);
-    const data = await response.json();
+"use server";
 
-    return data;
+export async function getArticlesByKeyword(keyword: string): Promise<Video[]> {
+  try {
+    const response = await fetch(
+      `${process.env.SERVER_URL}/api/search?keyword=${keyword}`,
+    );
+    const result = await response.json();
+
+    return result.data.articles;
   } catch (error) {
     console.error("[ERROR]getArticlesByKeyword:\n", error);
-    return null;
+    return [];
   }
 }

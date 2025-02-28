@@ -2,14 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getArticlesByKeyword } from "@/lib/api/getArticlesByKeyword";
 
 function useGetArticlesByKeyword(keyword: string) {
-  const { data, isLoading, error } = useQuery<ArticleListResponse>({
-    queryKey: ["searchedVideos", keyword],
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["getArticlesByKeyword", keyword],
     queryFn: () => getArticlesByKeyword(keyword),
-
     enabled: !!keyword,
   });
-
-  console.log(keyword, data);
 
   return {
     data,
