@@ -13,7 +13,6 @@ export default function Header({ onSearch }: HeaderProps) {
 
   const handleSearch = () => {
     onSearch(value);
-    setValue(""); // 검색 후 입력값 초기화
   };
 
   const handleEnter = (e: React.KeyboardEvent) => {
