@@ -12,3 +12,15 @@ declare namespace NodeJS {
     SERVER_URL: string;
   }
 }
+
+interface ArticleListResponse {
+  status: string;
+  message: string;
+  data: {
+    articles: Video[];
+    page: number;
+    hasPrev: boolean;
+    hasNextPage: boolean;
+    totalPageCount: number;
+  };
+}

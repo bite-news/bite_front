@@ -7,12 +7,12 @@ import { VideoCard } from "@/components/home";
 import { Loading } from "../common";
 
 export default function VideoList() {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading } = useQuery<ArticleListResponse>({
     queryKey: ["getArticleList", 1],
     queryFn: () => getArticleList(1),
   });
 
-  const videos = data?.data.articles as Video[];
+  const videos = data?.data?.articles as Video[];
 
   if (isLoading) {
     return (
