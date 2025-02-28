@@ -1,3 +1,5 @@
+"use server";
+
 export async function getArticleList(pageNumber: number) {
   try {
     const response = await fetch(

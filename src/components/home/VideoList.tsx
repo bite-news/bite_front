@@ -16,7 +16,7 @@ export default function VideoList() {
 
   if (isLoading) {
     return (
-      <div className="text-center py-10">
+      <div className="w-full text-center py-10 flex justify-center">
         <Loading />
       </div>
     );
