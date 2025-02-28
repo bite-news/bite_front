@@ -1,13 +1,31 @@
-export async function getArticleList(pageNumber: number) {
+"use server";
+
+interface GetArticleListResponse {
+  articles: Video[];
+  page: number;
+  hasPrev: boolean;
+  hasNextPage: boolean;
+  totalPageCount: number;
+}
+
+export async function getArticleList(
+  pageNumber: number,
+): Promise<GetArticleListResponse> {
   try {
     const response = await fetch(
       `${process.env.SERVER_URL}/api/articles?page=${pageNumber}`,
     );
-    const data = await response.json();
+    const result = await response.json();
 
-    return data;
+    return result.data;
   } catch (error) {
-    console.error("[ERROR]getArticle:\n", error);
-    return null;
+    console.error("[ERROR]getArticleList:\n", error);
+    return {
+      articles: [],
+      page: -1,
+      hasNextPage: false,
+      hasPrev: false,
+      totalPageCount: -1,
+    };
   }
 }
